@@ -1,0 +1,35 @@
+<html>
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="/js/main.js"></script>
+    <script src="js/elements.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    </head>
+    <body onload="create_header('header')">
+        <div id="header"></div>
+        <script>
+            video = document.getElementById('video');
+            canvas = document.getElementById('canvas');
+            photo = document.getElementById('photo');
+            startbutton = document.getElementById('startbutton');
+        
+            navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+            .then(function(stream) {
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch(function(err) {
+                console.log("An error occurred: " + err);
+            });
+        </script>
+          <div class="camera">
+            <video id="video">Video stream not available.</video>
+            <button id="startbutton">Take photo</button>
+          </div>
+          <canvas id="canvas">
+        </canvas>
+        <div class="output">
+          <img id="photo" alt="The screen capture will appear in this box.">
+        </div>
+    </body>
+</html>
